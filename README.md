@@ -1,4 +1,4 @@
-:point_right: PUT YOUR CI BADGE HERE
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=sergomezgio_trabajo3-localizacion-covid)
 
 # EMS-lab3 Maintainability
 
