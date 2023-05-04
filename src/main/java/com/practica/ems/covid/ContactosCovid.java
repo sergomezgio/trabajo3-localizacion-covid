@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.practica.excecption.EmsDuplicateLocationException;
-import com.practica.excecption.EmsDuplicatePersonException;
-import com.practica.excecption.EmsInvalidNumberOfDataException;
-import com.practica.excecption.EmsInvalidTypeException;
-import com.practica.excecption.EmsLocalizationNotFoundException;
-import com.practica.excecption.EmsPersonNotFoundException;
+import com.practica.exception.EmsDuplicateLocationException;
+import com.practica.exception.EmsDuplicatePersonException;
+import com.practica.exception.EmsInvalidNumberOfDataException;
+import com.practica.exception.EmsInvalidTypeException;
+import com.practica.exception.EmsLocalizationNotFoundException;
+import com.practica.exception.EmsPersonNotFoundException;
 import com.practica.genericas.Constantes;
 import com.practica.genericas.Coordenada;
 import com.practica.genericas.FechaHora;
@@ -68,24 +68,7 @@ public class ContactosCovid {
 		}
 		String datas[] = dividirEntrada(data);
 		for (String linea : datas) {
-			String datos[] = this.dividirLineaData(linea);
-			if (!datos[0].equals("PERSONA") && !datos[0].equals("LOCALIZACION")) {
-				throw new EmsInvalidTypeException();
-			}
-			if (datos[0].equals("PERSONA")) {
-				if (datos.length != Constantes.MAX_DATOS_PERSONA) {
-					throw new EmsInvalidNumberOfDataException("El número de datos para PERSONA es menor de 8");
-				}
-				this.poblacion.addPersona(this.crearPersona(datos));
-			}
-			if (datos[0].equals("LOCALIZACION")) {
-				if (datos.length != Constantes.MAX_DATOS_LOCALIZACION) {
-					throw new EmsInvalidNumberOfDataException("El número de datos para LOCALIZACION es menor de 6");
-				}
-				PosicionPersona pp = this.crearPosicionPersona(datos);
-				this.localizacion.addLocalizacion(pp);
-				this.listaContactos.insertarNodoTemporal(pp);
-			}
+			loadDataFile(linea,reset);
 		}
 	}
 
