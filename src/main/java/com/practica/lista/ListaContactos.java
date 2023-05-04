@@ -93,17 +93,6 @@ public class ListaContactos {
 		}
 	}
 	
-	private boolean buscarPersona (String documento, NodoPersonas nodo) {
-		NodoPersonas aux = nodo;
-		while(aux!=null) {
-			if(aux.getDocumento().equals(documento)) {
-				return true;				
-			}else {
-				aux = aux.getSiguiente();
-			}
-		}
-		return false;
-	}
 	
 	private void insertarPersona (String documento, NodoPersonas nodo) {
 		NodoPersonas aux = nodo, nuevo = new NodoPersonas(documento, null);
